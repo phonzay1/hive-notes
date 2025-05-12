@@ -8,7 +8,9 @@ import { getBase64ImageUrisFromFolder } from "./get-base64-encodings";
 const { Pool } = pg;
 
 dotenv.config();
-  
+
+const year = 2024;
+
 const oai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
@@ -117,7 +119,7 @@ async function extractHiveNotes(imageUrl: string) {
   return hiveNotes.notes;
 }
 
-function formatHiveNotes(hiveNotes: NotesType[], year: number) {
+function formatHiveNotes(hiveNotes: NotesType[]) {
   return hiveNotes.map(notes => {
     let formattedDate = `${year}-` + notes.date
       .split(/[-\/]/)
@@ -194,7 +196,7 @@ async function embedNotes() {
 
   for (const url of imageUrls) {
     let notes = await extractHiveNotes(url);
-    notes = formatHiveNotes(notes, 2024);
+    notes = formatHiveNotes(notes);
     formattedNotes.push(...notes);
   }
   
