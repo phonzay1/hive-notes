@@ -32,6 +32,18 @@ async function setup() {
       );
     `);
 
+    // Create table for conversations
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS conversations (
+        id SERIAL PRIMARY KEY,
+        date date,
+        timestamp timestamp,
+        thread_id varchar(255),
+        role varchar(20),
+        content text
+      );
+    `);
+
     console.log('Database setup complete!');
   } catch (err) {
     console.error('Error setting up database:', err);
