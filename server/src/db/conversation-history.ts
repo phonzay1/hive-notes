@@ -30,6 +30,6 @@ export async function getConversationHistory(threadId: string): Promise<ChatComp
     console.error('Error fetching conversation history:', error);
     throw error;
   } finally {
-    await pool.end();
+    // await pool.end();
   }
 } 
