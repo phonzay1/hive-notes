@@ -1,6 +1,6 @@
 import { Router, RequestHandler } from 'express';
-import { getHiveNotes } from '../rag';
-import { addConversationEntry } from '../db/conversations';
+import { getHiveNotes } from '../rag/rag';
+import { addConversationEntry } from '../conversations/conversations';
 
 const router = Router();
 
@@ -18,17 +18,14 @@ const chatHandler: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    // Store user's question
     await addConversationEntry({
       threadId: body.threadId,
       role: 'user',
       content: body.question
     });
 
-    // Get response from LLM
     const response = await getHiveNotes(body.question, body.threadId);
 
-    // Store LLM's response
     await addConversationEntry({
       threadId: body.threadId,
       role: 'assistant',

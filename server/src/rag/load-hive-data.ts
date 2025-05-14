@@ -5,11 +5,12 @@ import pg from 'pg';
 import dotenv from 'dotenv';
 import fs from "fs";
 import { getBase64ImageUrisFromFolder } from "./get-base64-encodings";
+import { HIVE_IDS } from "../types/types";
 const { Pool } = pg;
 
 dotenv.config();
 
-const year = 2024;
+const year = 2025;
 
 const oai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -60,8 +61,8 @@ const HiveNotesSchema = z.object({
       Ping is common here`),
   hiveID: z.string()
     .refine(
-      id => ['C7', 'B6', 'D8', 'A5'].includes(id),
-      "Hive ID should be one of: 'C7', 'B6', 'D8', 'A5'"
+      id => HIVE_IDS.includes(id),
+      `Hive ID should be one of: ${HIVE_IDS}`
     )
     .describe("The hive ID"),
   notes: z.string()

@@ -1,6 +1,7 @@
 import { Pool } from 'pg';
 import OpenAI from 'openai';
 import dotenv from 'dotenv';
+import { SearchResult } from '../types/types';
 
 dotenv.config();
 
@@ -15,16 +16,6 @@ const pool = new Pool({
   password: process.env.PG_PASSWORD,
   port: Number(process.env.PG_PORT),
 });
-
-export interface SearchResult {
-  date: string;
-  time: string;
-  weather: string;
-  beekeepers: string;
-  hive_id: 'C7' | 'B6' | 'D8' | 'A5';
-  notes: string;
-  similarity: number;
-}
 
 export async function searchSimilarNotes(
   query: string,

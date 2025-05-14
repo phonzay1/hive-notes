@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
-import { searchSimilarNotes } from './db/search-relevant-notes';
-import { getConversationHistory } from './db/conversation-history';
+import { searchSimilarNotes } from './search-relevant-notes';
+import { getConversationHistory } from '../conversations/conversation-history';
 import dotenv from 'dotenv';
 
 dotenv.config();
