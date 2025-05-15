@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
-const folderPath = path.resolve(__dirname, '..', 'note-photos');
+const folderPath = path.resolve(__dirname, '..', '..', 'note-photos');
 
 function isImage(file: string): boolean {
   return IMAGE_EXTENSIONS.includes(path.extname(file).toLowerCase());
