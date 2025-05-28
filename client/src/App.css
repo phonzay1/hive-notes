@@ -99,3 +99,21 @@ header p {
 .start-chat-button:active {
   transform: translateY(0);
 }
+
+@media (max-width: 600px) {
+  #root,
+  .app,
+  body {
+    max-width: 100vw !important;
+    width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+  }
+  header {
+    padding: 20px 10px !important;
+  }
+  .welcome-screen {
+    padding: 8px !important;
+  }
+}
